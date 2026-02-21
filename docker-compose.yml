@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: waraswareg-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://backend:5000/api
+    depends_on:
+      - backend
+    networks:
+      - waraswareg-network
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: waraswareg-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - FRONTEND_URL=http://frontend:3000
+    volumes:
+      - ./server/uploads:/app/uploads
+    networks:
+      - waraswareg-network
+
+networks:
+  waraswareg-network:
+    driver: bridge
+
+volumes:
+  uploads:

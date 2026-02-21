@@ -1,11 +1,8 @@
-import { Button } from './components/ui/button';
+import { ChatRoom } from './pages/ChatRoom';
+import './index.css';
 
 function App() {
-	return (
-		<>
-			<Button>Button</Button>
-		</>
-	);
+	return <ChatRoom />;
 }
 
 export default App;
