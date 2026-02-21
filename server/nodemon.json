@@ -1,0 +1,16 @@
+{
+  "watch": [".", "config", "routes", "controllers"],
+  "ignore": ["node_modules", "uploads", "*.log"],
+  "ext": "js,json",
+  "delay": 500,
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "exec": "node index.js",
+  "events": {
+    "start": "echo '🚀 Server starting...'",
+    "crash": "echo '💥 Server crashed!'",
+    "restart": "echo '♻️ Server restarted!'",
+    "quit": "echo '🛑 Server stopped!'"
+  }
+}
